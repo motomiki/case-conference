@@ -25,7 +25,7 @@ document.getElementById('query-form').addEventListener('submit', async (e) => {
     if (!response.ok) {
       const errorDetails = await response.json(); // Get error details from the server
       console.error('Error details:', errorDetails); // Log the error details
-      throw new Error('Error occurred while processing the request.'); // Throw the error to be caught in the catch block
+      throw new Error('リクエストの処理中にエラーが発生しました。'); // Throw the error to be caught in the catch block
     }
 
     const result = await response.json();
