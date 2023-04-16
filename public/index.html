@@ -17,31 +17,41 @@
       white-space: pre-wrap;
       max-width: 100%;
     }
+    .scroll-container {
+      max-height: 80vh; /* Adjust according to your needs */
+      overflow-y: auto;
+    }
   </style>
 
 </head>
-<body class="mb-10">
-  <header>
-    <div class="container">
+<body>
+  <header class="containe">
+    <nav class="navbar navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <img src="https://www.as-campusclub.org/wp-content/uploads/2022/03/cropped-favicon.jpg" alt="" width="50" height="50" class="d-inline-block align-text-top">
+          AIで専門家の意見を擬似的に再現する
+        </a>
+      </div>
+    </nav>
+  </header>
+  <main id="result-container" class="scroll-container">
+    <div class="container mt-3">
       <h1>AIケース会議</h1>
     </div>
-  </header>
-	<main>
-		<div class="container">
-			<form id="query-form">
-				<div class="mb-3">
-					<label for="exampleFormControlTextarea1" class="form-label">話し合いたいことを入力してください</label>
-					<textarea class="form-control" id="prompt" placeholder="中学2年生の女の子が、赤ちゃん返りのような行動が目立つようになりました。専門家として、どのような支援が必要かを考える必要があります。" rows="4"></textarea>
-				</div>
-				<!-- <textarea id="prompt" placeholder="中学2年生の女の子が、赤ちゃん返りのような行動が目立つようになりました。専門家として、どのような支援が必要かを考える必要があります。" rows="4" cols="50"></textarea> -->
-				<button type="submit" class="btn btn-info">送信</button>
-			</form>
-			<div class="container mb-3">
-				<pre id="result" class="fw-bolder formatted-text"></pre>
-			</div>
-		</div>
-	</main>
-
+    <div class="container">
+      <form id="query-form">
+        <div class="mb-3">
+          <label for="exampleFormControlTextarea1" class="form-label">話し合いたいことを入力してください</label>
+          <textarea class="form-control" id="prompt" placeholder="中学2年生の女の子が、赤ちゃん返りのような行動が目立つようになりました。専門家として、どのような支援が必要かを考える必要があります。" rows="4"></textarea>
+        </div>
+        <button type="submit" class="btn btn-info">送信</button>
+      </form>
+      <div class="container mt-5">
+        <pre id="result" class="fs-5 formatted-text"></pre>
+      </div>
+    </div>
+  </main>
    <!-- Option 1: Bootstrap Bundle with Popper -->
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>

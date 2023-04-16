@@ -1,9 +1,10 @@
 // タイピングアニメーションを実行する関数
-async function typeWriter(text, container) {
-  const typingSpeed = 50;
-  for (let i = 0; i < text.length; i++) {
-    container.textContent += text.charAt(i);
-    await new Promise((resolve) => setTimeout(resolve, typingSpeed));
+async function typeLetterByLetter(element, parentElement, text, index = 0) {
+  if (index < text.length) {
+    element.textContent += text[index];
+    parentElement.scrollTop = parentElement.scrollHeight - parentElement.clientHeight;
+    await new Promise((resolve) => setTimeout(resolve, 50));
+    await typeLetterByLetter(element, parentElement, text, index + 1);
   }
 }
 
@@ -12,7 +13,7 @@ document.getElementById('query-form').addEventListener('submit', async (e) => {
 
   const prompt = document.getElementById('prompt').value;
   const resultContainer = document.getElementById('result');
-  resultContainer.textContent = '';
+  const parentElement = document.getElementById('result-container');
 
   try {
     const response = await fetch('/api/query', {
@@ -22,16 +23,14 @@ document.getElementById('query-form').addEventListener('submit', async (e) => {
     });
 
     if (!response.ok) {
-      const errorDetails = await response.json();
-      console.error('Error details:', errorDetails);
-      throw new Error('Error occurred while processing the request.');
+      const errorDetails = await response.json(); // Get error details from the server
+      console.error('Error details:', errorDetails); // Log the error details
+      throw new Error('Error occurred while processing the request.'); // Throw the error to be caught in the catch block
     }
 
     const result = await response.json();
-    await typeWriter(result.content, resultContainer); // タイピングアニメーションを実行
-    // const preElement = document.createElement('pre');
-    // preElement.classList.add('text-wrap'); // カスタムクラスを追加
-    // resultContainer.appendChild(preElement);
+    resultContainer.textContent = ''; // Clear previous content
+    await typeLetterByLetter(resultContainer, parentElement, result.content);
   } catch (error) {
     console.error(error);
     resultContainer.textContent = 'Error occurred while processing the request.';
