@@ -1,0 +1,8 @@
+{
+  "name": "case-conference",
+  "description": "AIケース会議",
+  "repository": "https://github.com/motomiki/case-conference",
+  "logo": "",
+  "keywords": ["node"],
+  "image": "heroku/nodejs"
+}

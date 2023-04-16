@@ -88,6 +88,7 @@ app.post('/api/query', async (req, res) => {
   } 
 });
 
-app.listen(PORT, () => {
-  console.log(`Application listening at ${PORT}`);
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log(`Application listening at ${port}`);
 });
