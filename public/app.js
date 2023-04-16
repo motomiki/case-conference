@@ -16,7 +16,7 @@ document.getElementById('query-form').addEventListener('submit', async (e) => {
   const parentElement = document.getElementById('result-container');
 
   try {
-    const response = await fetch('/api/query', {
+    const response = await fetch(`${window.location.origin}/api/query`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ prompt }),
@@ -33,6 +33,6 @@ document.getElementById('query-form').addEventListener('submit', async (e) => {
     await typeLetterByLetter(resultContainer, parentElement, result.content);
   } catch (error) {
     console.error(error);
-    resultContainer.textContent = 'Error occurred while processing the request.';
+    resultContainer.textContent = 'リクエストの処理中にエラーが発生しました。';
   }
 });
