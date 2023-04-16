@@ -6,7 +6,15 @@
     "express": "^4.18.2",
     "openai": "^3.2.1"
   },
-    "engines": {
-    "node": "~10"
+  "engines": {
+    "node": "14.x"
+  },
+  "name": "case-conference",
+  "version": "1.0.0",
+  "description": "AIケース会議",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   }
 }
