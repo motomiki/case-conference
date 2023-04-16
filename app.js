@@ -3,11 +3,10 @@ const express = require("express");
 const axios = require('axios');
 const bodyParser = require('body-parser');
 const { Configuration, OpenAIApi } = require("openai");
-
 const app = express();
 
-// app.set("view engine", "ejs");
-// app.use("/", require("./routes/index.js"));
+// Express settings
+app.disable("x-powered-by");
 
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
