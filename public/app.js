@@ -8,31 +8,31 @@ async function typeLetterByLetter(element, parentElement, text, index = 0) {
   }
 }
 
-document.getElementById('query-form').addEventListener('submit', async (e) => {
-  e.preventDefault();
+// DOM が完全に読み込まれた後に実行される関数
+document.addEventListener('DOMContentLoaded', () => {
+  console.log('DOM fully loaded and parsed'); // 追加
 
-  const prompt = document.getElementById('prompt').value;
+  const socket = io();
   const resultContainer = document.getElementById('result');
   const parentElement = document.getElementById('result-container');
 
-  try {
-    const response = await fetch('/api/query', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ prompt }),
-    });
-
-    if (!response.ok) {
-      const errorDetails = await response.json(); // Get error details from the server
-      console.error('Error details:', errorDetails); // Log the error details
-      throw new Error('Error occurred while processing the request.'); // Throw the error to be caught in the catch block
-    }
-
-    const result = await response.json();
+  socket.on('message', async (message) => {
+    console.log('Received message:', message); // 追加
     resultContainer.textContent = ''; // Clear previous content
-    await typeLetterByLetter(resultContainer, parentElement, result.content);
-  } catch (error) {
-    console.error(error);
-    resultContainer.textContent = 'Error occurred while processing the request.';
-  }
+    await typeLetterByLetter(resultContainer, parentElement, message.content);
+  });
+
+  document.getElementById('query-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const prompt = document.getElementById('prompt').value;
+    const queryData = { prompt };
+
+    try {
+      socket.emit('query', queryData);
+    } catch (error) {
+      console.error(error);
+      resultContainer.textContent = 'リクエストの処理中にエラーが発生しました。';
+    }
+  });
 });

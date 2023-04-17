@@ -1,14 +1,4 @@
 {
-  "dependencies": {
-    "axios": "^1.3.5",
-    "body-parser": "^1.20.2",
-    "ejs": "^3.1.9",
-    "express": "^4.18.2",
-    "openai": "^3.2.1"
-  },
-  "engines": {
-    "node": "14.x"
-  },
   "name": "case-conference",
   "version": "1.0.0",
   "description": "AIケース会議",
@@ -16,5 +6,18 @@
   "scripts": {
     "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
-  }
+  },
+  "dependencies": {
+    "axios": "^1.3.5",
+    "body-parser": "^1.20.2",
+    "express": "^4.18.2",
+    "openai": "^3.2.1",
+    "socket.io": "4.6.1",
+    "socket.io-client": "4.6.1"
+  },
+  "engines": {
+    "node": "18.x"
+  },
+  "license": "ISC",
+  "private": true
 }
