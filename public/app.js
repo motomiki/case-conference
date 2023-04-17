@@ -11,11 +11,17 @@ async function typeLetterByLetter(element, parentElement, text, index = 0) {
 // DOM が完全に読み込まれた後に実行される関数
 document.addEventListener('DOMContentLoaded', () => {
   console.log('DOM fully loaded and parsed'); // 追加
+// DOM が完全に読み込まれた後に実行される関数
+document.addEventListener('DOMContentLoaded', () => {
+  console.log('DOM fully loaded and parsed'); // 追加
 
+  const socket = io();
   const socket = io();
   const resultContainer = document.getElementById('result');
   const parentElement = document.getElementById('result-container');
 
+  socket.on('message', async (message) => {
+    console.log('Received message:', message); // 追加
   socket.on('message', async (message) => {
     console.log('Received message:', message); // 追加
     resultContainer.textContent = ''; // Clear previous content
