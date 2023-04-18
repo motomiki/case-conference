@@ -8,8 +8,16 @@ async function typeLetterByLetter(element, parentElement, text, index = 0) {
   }
 }
 
-// DOM が完全に読み込まれた後に実行される関数
-document.addEventListener('DOMContentLoaded', () => {
+async function initialize() {
+  try {
+    // サーバー上の /initialize エンドポイントにアクセスして、必要であればクッキーを設定
+    await fetch("/initialize");
+  } catch (error) {
+    console.error("Initialization error:", error);
+  }
+}
+
+initialize().then(() => {
   console.log('DOM fully loaded and parsed'); // 追加
 
   const socket = io();
