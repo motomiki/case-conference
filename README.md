@@ -1,1 +1,1 @@
-# AIで専門家の意見を擬似的に再現する
+# AI to simulate expert opinion
